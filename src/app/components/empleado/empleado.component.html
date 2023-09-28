@@ -1,0 +1,65 @@
+
+<div class="container mt-5">
+
+  <div class="row">
+    <div class="col-9">
+      <app-agregar-empleado
+        (empleadoAgregado)="onEmpleadoAgregado()"
+      ></app-agregar-empleado>
+    </div>
+    <div class="col">
+      <div class="form-group">
+        <br />
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Buscar empleado por nombre"
+          [(ngModel)]="busqueda"
+          (input)="filtrarEmpleados()"
+        />
+      </div>
+      <!-- <button class="btn btn-primary" (click)="filtrarEmpleados()">
+        Buscar
+      </button> -->
+    </div>
+  </div>
+
+  <hr />
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Cargo</th>
+        <th>Departamento</th>
+        <th>Sueldo</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let usuario of empleadosFiltrados">
+        <td>{{ usuario.nombre }}</td>
+        <td>{{ usuario.cargo }}</td>
+        <td>{{ usuario.departamento }}</td>
+        <td>{{ usuario.sueldo }}</td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-sm btn-primary"
+            (click)="abrirModal(usuario)"
+          >
+            <i class="fa fa-edit"></i>
+          </button>
+          <button
+            type="button"
+            class="btn btn-sm btn-danger m-1"
+            (click)="eliminarEmpleado(usuario._id)"
+          >
+            <i class="fa fa-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- Botón para abrir el modal -->
+</div>
